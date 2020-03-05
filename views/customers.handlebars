@@ -1,0 +1,73 @@
+<!--Jumbotron/Header-->
+<section id="header" class="jumbotron text-center">
+    <h1 class="display-3"> RWB Car Customer Logs </h1>
+</section>
+
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-center my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <h3 class="card-title">Add Customer</h3>
+                    <form class="centerForm" action="/customer" method="post">
+                        <fieldset>
+                            <div>
+                                <label for="customer">Customer First Name:
+                                    <input type="text" name="first_name" id="customerFirstName" max="254">
+                                </label>
+                                <label for="customer">Customer Last Name:
+                                    <input type="text" name="last_name" id="customerLastName" max="254">
+                                </label>
+                                <label for="customer">Customer Phone Number:
+                                    <input type="text" name="phone_number" id="customerPhoneNumber" max="254">
+                                </label>
+                                <label for="customer">Customer Email Address:
+                                    <input type="text" name="email_address" id="customerEmailAddress" max="254">
+                                </label>
+                            </div>
+                            <input type="submit" value="Add Customer" id="addCustomer">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-center my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <h3 class="card-title">List Of Customers (To be populated by DB)</h3>
+                    <!-- Added class table table-striped-->
+                    <table class="table table-striped" border="1" width="400" height="80" align="left">
+                        <tr>
+                            <td>First Name </td>
+                            <td>Last Name </td>
+                            <td>Phone Number </td>
+                            <td>Email </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {{#each customers}}
+                        <tr>
+                            <td>{{first_name}}</td>
+                            <td>{{last_name}}</td>
+                            <td>{{phone_number}}</td>
+                            <td>{{email_address}}</td>
+                            <td><input type="button" value="EDIT" cust-id="{{customer_id}}"></td>
+                            <td>
+                                <form action="/customer/{{customer_id}}?_method=DELETE" method="POST">
+                                    <button type="submit"> DELETE</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<!--Jumbotron/Header-->
+<section id="header" class="jumbotron text-center">
+    <h1 class="display-3"> RWB Car Transaction Logs </h1>
+</section>
+
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-center my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <h3 class="card-title">Add Transaction</h3>
+                    <p><b>the selection options will be pre-determined from the inputs on the previous pages</b></p>
+
+                    <form class="centerForm">
+                        <fieldset>
+                            <div>
+                                <label for="customer">Customer:
+                                    <select name="customerPick" id="customerPick">
+                                        <option value="Bruce"> Bruce Wayne </option>
+                                        <option value="Clark">Clark Kent </option>
+                                    </select>
+
+                                    <label for="employee">Employee:
+                                        <select name="employeePick" id="employeePick">
+                                            <option value="dennis"> Dennis Reynolds </option>
+                                            <option value="mac">Mac Mcdonald </option>
+                                        </select>
+
+                                        <label for="employee">Addtional Employee:
+                                            <select name="employeePick" id="employeePick">
+                                                <option value="none">None </option>
+                                                <option value="dennis"> Dennis Reynolds </option>
+                                                <option value="mac">Mac Mcdonald </option>
+                                            </select>
+
+                                            <label for="car">Car:
+                                                <select name="carPick" id="carPick">
+                                                    <option value="porsche911"> Porsche 911 </option>
+                                                    <option value="bmwM3">BMW M3 </option>
+                                                </select>
+                            </div>
+                            <input type="submit" value="Add Transaction" id="addTransaction">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-center my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <h3 class="card-title">List Of Transactions (To be populated by DB)</h3>
+                    <table border="1" width="400" height="80" align="left">
+                        <tr>
+                            <td>Customer </td>
+                            <td>Employee </td>
+                            <td>Car </td>
+                            <td>Transaction ID </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>Clark Kent</td>
+                            <td>Mac McDonald</td>
+                            <td>BMW M3</td>
+                            <td>0001x</td>
+                            <td><input type="button" value="EDIT"></td>
+                            <td><input type="button" value="DELETE"></td>
+                        </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

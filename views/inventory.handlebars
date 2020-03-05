@@ -1,0 +1,124 @@
+<!--Jumbotron-->
+<section id="header" class="jumbotron text-center">
+    <h1 class="display-3"> Car Inventory </h1>
+</section>
+
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-left my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <!-- Search Form -->
+                    <form action="/" method="post">
+                        <fieldset>
+                            <legend>
+                                <h3>Search Car in RWB Database</h3>
+                            </legend>
+                            <p>
+                                <label for="price-range">Desired price range: </label>
+                                <select name="price-range" id="price-range">
+                                    <option value="10grand"> $10,000 </option>
+                                    <option value="20grand"> $20,000 </option>
+                                    <option value="40grand"> $40,000 </option>
+                                    <option value="50grand"> $50,000 </option>
+                                </select>
+
+                                <label for="car-color">Desired car color: </label>
+                                <select name="car-color" id="car-color">
+                                    <option value="black"> black </option>
+                                    <option value="red"> red </option>
+                                    <option value="white"> white </option>
+                                    <option value="blue">blue</option>
+                                </select>
+
+                                <label for="car-type">Desired car type: </label>
+                                <select name="car-type" id="car-type">
+                                    <option value="sports"> sports </option>
+                                    <option value="suv"> suv </option>
+                                    <option value="sedan"> sedan </option>
+                                </select>
+                            </p>
+                            <input type="submit" name="search_submit" id="search_submit">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-left my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <h3 class="card-title">Search Results(Sample)</h3>
+                    <table class="table table-striped" border="1" width="400" height="80" align="left">
+                        <tr>
+                            {{!-- <td>Name </td> --}}
+                            <td>Price </td>
+                            {{!-- <td>Color </td> --}}
+                            {{!-- <td>Type </td> --}}
+                            <td>Make</td>
+                            <td>Model</td>
+                            <td>Year</td>
+                            <td>Mileage</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {{#each cars}}
+                        <tr>
+                            {{!-- <td>Porsche 911 GT3</td> --}}
+                            <td>{{price}}</td>
+                            <td>{{make}}</td>
+                            <td>{{model}}</td>
+                            <td>{{year}}</td>
+                            <td>{{mileage}}</td>
+                            <td><input type="button" value="EDIT"></td>
+                            <td>
+                                <form action="/inventory/{{car_id}}?_method=DELETE" method="POST">
+                                    <button type="submit"> DELETE</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Add car-->
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-left my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <h3 class="card-title">Add New Car</h3>
+                    <form class="centerForm" acion="/inventory" method="POST">
+                        <fieldset>
+                            <div>
+                                <label for="car">Car Price:
+                                    <input type="number" name="price" id="carPrice" required>
+                                </label>
+                                <label for="car">Car Maker:
+                                    <input type="text" name="make" id="carMake" required>
+                                </label>
+                                <label for="car">Car Model:
+                                    <input type="text" name="model" id="carModel" required>
+                                </label>
+                                <label for="car">Car Year:
+                                    <input type="number" name="year" id="carYear" required>
+                                </label>
+                                <label for="car">Car Mileage:
+                                    <input type="number" name="mileage" id="carMileage" required>
+                                </label>
+                            </div>
+                            <input type="submit" value="Add Car" id="addCar">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
