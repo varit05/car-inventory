@@ -9,6 +9,6 @@ const transactionRoutes = require('./transactions');
 router.use('/inventory', carRoutes);
 router.use('/employee', employeeRoutes);
 router.use('/customer', customerRoutes);
-router.use('/transaction', transactionRoutes);
+router.use('/transactions', transactionRoutes);
 
 module.exports = router;

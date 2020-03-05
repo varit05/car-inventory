@@ -17,6 +17,26 @@ class EmployeeService {
   };
 
   /**
+   * Get Employee by employee Id
+   */
+  getEmployeeById = (id, callBack) => {
+    try {
+      console.log('id', id);
+      pool.query(
+        `SELECT * FROM employee WHERE employee_id = ${id};`,
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+          return callBack(null, results[0]);
+        }
+      );
+    } catch (error) {
+      console.log('error retrieving cars');
+    }
+  };
+
+  /**
    * Add Employee details
    */
   addEmployee = (data, callBack) => {
@@ -62,11 +82,13 @@ class EmployeeService {
   /**
    * Update Employee details
    */
-  updateEmployee = (data, callBack) => {
+  updateEmployee = (req, callBack) => {
     try {
+      const data = req.body;
+      const empId = req.params.id;
       pool.query(
         `UPDATE employee set name = ?, num_cars_sold = ?, salary = ? WHERE employee_id = ?`,
-        [data.name, data.num_cars_sold, data.salary, data.empId],
+        [data.name, data.num_cars_sold, data.salary, empId],
         (error, results, fields) => {
           if (error) {
             return callBack(error);

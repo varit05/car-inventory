@@ -1,5 +1,4 @@
 const CarService = require('../services/cars.service');
-const { OK, CREATED } = require('http-status-codes');
 
 const getCars = async (req, res, next, complete) => {
   try {
@@ -14,6 +13,21 @@ const getCars = async (req, res, next, complete) => {
       //   message: 'All cars data retrieve successfully',
       //   data: cars
       // });
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getCarbyId = (req, res, next, complete) => {
+  try {
+    CarService.getCarbyId(req.params.id, (err, car) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.locals.car = car;
+      complete();
     });
   } catch (error) {
     next(error);
@@ -58,7 +72,7 @@ const deleteCar = async (req, res, next) => {
 
 const updateCar = async (req, res, next) => {
   try {
-    CarService.updateCar(req.body, (err, results) => {
+    CarService.updateCar(req, (err, results) => {
       if (err) {
         next(err);
         return;
@@ -76,6 +90,7 @@ const updateCar = async (req, res, next) => {
 
 module.exports = {
   getCars,
+  getCarbyId,
   addNewCar,
   deleteCar,
   updateCar

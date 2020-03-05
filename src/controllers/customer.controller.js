@@ -34,6 +34,26 @@ const addNewCustomer = async (req, res, next) => {
   }
 };
 
+const getCustomerById = (req, res, next, complete) => {
+  try {
+    CustomerService.getCustomerbyId(req.params.id, (err, customer) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      console.log('customer', customer);
+      res.locals.customer = customer;
+      complete();
+      // res.status(OK).json({
+      //   message: 'Customer has been deleted successfully',
+      //   data: results
+      // });
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const deleteCustomer = async (req, res, next) => {
   try {
     CustomerService.deleteCustomer(req.params.id, (err, results) => {
@@ -54,7 +74,7 @@ const deleteCustomer = async (req, res, next) => {
 
 const updateCustomer = async (req, res, next) => {
   try {
-    CustomerService.updateCustomer(req.body, (err, results) => {
+    CustomerService.updateCustomer(req, (err, results) => {
       if (err) {
         next(err);
         return;
@@ -70,5 +90,6 @@ module.exports = {
   getCustomers,
   addNewCustomer,
   deleteCustomer,
+  getCustomerById,
   updateCustomer
 };

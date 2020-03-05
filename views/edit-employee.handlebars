@@ -1,0 +1,34 @@
+<!--Jumbotron/Header-->
+<section id="header" class="jumbotron text-center">
+    <h1 class="display-3"> Edit Employee </h1>
+</section>
+
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-center my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <h3 class="card-title">Edit Employee</h3>
+                    <form class="centerForm" action="/employee/{{employee.employee_id}}?_method=PUT" method="post">
+                        <fieldset>
+                            <div>
+                                <label for="employee">Employee Name:
+                                    <input type="text" name="name" value="{{employee.name}}" id="employeeName" max="254">
+                                </label>
+                                <label for="employee">Salary Name:
+                                    <input type="text" name="salary" value="{{employee.salary}}" id="employeeSalary"
+                                        max="254">
+                                </label>
+                                <label for="employee">Number of Cars Sold:
+                                    <input type="text" name="num_cars_sold" value="{{employee.num_cars_sold}}" id="employeeSales"
+                                        max="254">
+                                </label>
+                            </div>
+                            <input type="submit" value="Edit Employee" id="editEmployee">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

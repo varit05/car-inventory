@@ -1,5 +1,4 @@
 const EmployeeService = require('../services/employees.service');
-const { OK, CREATED } = require('http-status-codes');
 
 const getEmployees = async (req, res, next, complete) => {
   try {
@@ -19,7 +18,20 @@ const getEmployees = async (req, res, next, complete) => {
     next(error);
   }
 };
-
+const getEmployeeById = (req, res, next, complete) => {
+  try {
+    EmployeeService.getEmployeeById(req.params.id, (err, employee) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.locals.employee = employee;
+      complete();
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 const addNewEmployee = async (req, res, next) => {
   try {
     EmployeeService.addEmployee(req.body, (err, employees) => {
@@ -58,7 +70,7 @@ const deleteEmployee = async (req, res, next) => {
 
 const updateEmployee = async (req, res, next) => {
   try {
-    EmployeeService.updateEmployee(req.body, (err, results) => {
+    EmployeeService.updateEmployee(req, (err, results) => {
       if (err) {
         next(err);
         return;
@@ -76,6 +88,7 @@ const updateEmployee = async (req, res, next) => {
 
 module.exports = {
   getEmployees,
+  getEmployeeById,
   addNewEmployee,
   deleteEmployee,
   updateEmployee

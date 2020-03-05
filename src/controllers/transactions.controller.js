@@ -1,17 +1,19 @@
 const TransactionService = require('../services/transactions.service');
 const { OK, CREATED } = require('http-status-codes');
 
-const getAllTransactions = async (req, res, next) => {
+const getAllTransactions = async (req, res, next, complete) => {
   try {
     TransactionService.getAllTransactions((err, transactions) => {
       if (err) {
         next(err);
         return;
       }
-      res.status(OK).json({
-        message: 'All transactions data retrieve successfully',
-        data: transactions
-      });
+      res.locals.transactions = transactions;
+      complete();
+      // res.status(OK).json({
+      //   message: 'All transactions data retrieve successfully',
+      //   data: transactions
+      // });
     });
   } catch (error) {
     next(error);

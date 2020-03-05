@@ -56,9 +56,14 @@
                             <td>{{last_name}}</td>
                             <td>{{phone_number}}</td>
                             <td>{{email_address}}</td>
-                            <td><input type="button" value="EDIT" cust-id="{{customer_id}}"></td>
                             <td>
-                                <form action="/customer/{{customer_id}}?_method=DELETE" method="POST">
+                                <button type="button" cust-id="{{customer_id}}">
+                                    <a href="/customer/edit/{{customer_id}}">EDIT</a>
+                                </button>
+                            </td>
+                            <td>
+                                <form action="/customer/{{customer_id}}?_method=DELETE" onsubmit="();return false"
+                                    method="POST">
                                     <button type="submit"> DELETE</button>
                                 </form>
                             </td>

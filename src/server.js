@@ -27,18 +27,15 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Home Page' });
 });
 
-app.get('/transactions', (req, res) => {
-  res.render('transactions', { title: 'Transactions' });
-});
 app.use(function(req, res) {
   res.status(404);
   res.render('404');
 });
 
 app.use(function(err, req, res, next) {
-  console.error(err.stack);
   res.status(500);
   res.render('500');
+  next(err);
 });
 // set custom port, else set port to 3000
 app.set('port', process.env.PORT || 3000);

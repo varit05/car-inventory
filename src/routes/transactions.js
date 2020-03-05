@@ -7,9 +7,18 @@ const {
   deleteTransaction
 } = require('../controllers/transactions.controller');
 
-router.get('/', getAllTransactions);
 router.post('/', addNewTransaction);
 router.patch('/', updateTransaction);
 router.delete('/', deleteTransaction);
+
+router.get('/', (req, res, next) => {
+  getAllTransactions(req, res, next, complete);
+  function complete() {
+    res.render('transactions', {
+      title: 'Transactions',
+      transactions: res.locals.transactions
+    });
+  }
+});
 
 module.exports = router;

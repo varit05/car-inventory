@@ -1,0 +1,38 @@
+<!--Jumbotron/Header-->
+<section id="header" class="jumbotron text-center">
+    <h1 class="display-3"> Edit Car </h1>
+</section>
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-left my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <h3 class="card-title">Edit Car</h3>
+                    <form class="centerForm" action="/inventory/{{car.car_id}}?_method=PUT" method="post">
+                        <fieldset>
+                            <div>
+                                <label for="car">Car Price:
+                                    <input type="number" name="price" value="{{car.price}}" id="carPrice" required>
+                                </label>
+                                <label for="car">Car Maker:
+                                    <input type="text" name="make" value="{{car.make}}" id="carMake" required>
+                                </label>
+                                <label for="car">Car Model:
+                                    <input type="text" name="model" value="{{car.model}}" id="carModel" required>
+                                </label>
+                                <label for="car">Car Year:
+                                    <input type="number" name="year" value="{{car.year}}" id="carYear" required>
+                                </label>
+                                <label for="car">Car Mileage:
+                                    <input type="number" name="mileage" value="{{car.mileage}}" id="carMileage"
+                                        required>
+                                </label>
+                            </div>
+                            <input type="submit" value="Edit Car" id="editCar">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

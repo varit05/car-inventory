@@ -17,6 +17,25 @@ class CustomerService {
   };
 
   /**
+   * Get customer by customer id
+   */
+  getCustomerbyId = (id, callBack) => {
+    try {
+      pool.query(
+        `SELECT * FROM customer WHERE customer_id = ${id};`,
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+          return callBack(null, results[0]);
+        }
+      );
+    } catch (error) {
+      console.log('error retrieving customer by ID');
+    }
+  };
+
+  /**
    * Add new customer
    */
   addCustomer = (data, callBack) => {
@@ -67,8 +86,10 @@ class CustomerService {
   /**
    * Update customer
    */
-  updateCustomer = (data, callBack) => {
+  updateCustomer = (req, callBack) => {
     try {
+      const data = req.body;
+      const custId = req.params.id;
       pool.query(
         `UPDATE customer set first_name = ?, last_name = ?, email_address = ?, phone_number = ? WHERE customer_id = ?`,
         [
@@ -76,7 +97,7 @@ class CustomerService {
           data.last_name,
           data.email_address,
           data.phone_number,
-          data.custId
+          custId
         ],
         (error, results, fields) => {
           if (error) {

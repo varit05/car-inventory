@@ -74,9 +74,12 @@
                             <td>{{model}}</td>
                             <td>{{year}}</td>
                             <td>{{mileage}}</td>
-                            <td><input type="button" value="EDIT"></td>
                             <td>
-                                <form action="/inventory/{{car_id}}?_method=DELETE" method="POST">
+                                <button type="button">
+                                    <a href="/inventory/edit/{{car_id}}">EDIT</a>
+                                </button></td>
+                            <td>
+                                <form action="/inventory/{{car_id}}?_method=DELETE" onsubmit="();return false" method="POST">
                                     <button type="submit"> DELETE</button>
                                 </form>
                             </td>

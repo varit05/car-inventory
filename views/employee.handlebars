@@ -53,9 +53,14 @@
                             <td>{{num_cars_sold}}</td>
                             {{!-- todo --}}
                             <td>0001, 0002, 0003</td>
-                            <td><input type="button" value="EDIT"></td>
                             <td>
-                                <form action="/employee/{{employee_id}}?_method=DELETE" method="POST">
+                                <button type="button">
+                                    <a href="/employee/edit/{{employee_id}}">EDIT</a>
+                                </button>
+                            </td>
+                            <td>
+                                <form action="/employee/{{employee_id}}?_method=DELETE" onsubmit="();return false"
+                                    method="POST">
                                     <button type="submit"> DELETE</button>
                                 </form>
                             </td>

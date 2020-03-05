@@ -13,6 +13,25 @@ class CarService {
     }
   };
 
+  /**
+   * Get car by car id
+   */
+  getCarbyId = (id, callBack) => {
+    try {
+      pool.query(
+        `SELECT * FROM cars_inventory WHERE car_id = ${id};`,
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+          return callBack(null, results[0]);
+        }
+      );
+    } catch (error) {
+      console.log('error retrieving car by Id');
+    }
+  };
+
   addCar = (data, callBack) => {
     try {
       pool.query(
@@ -43,7 +62,6 @@ class CarService {
           if (error) {
             return callBack(error);
           }
-          console.log('data deleted', results);
           return callBack(null, results);
         }
       );
@@ -53,28 +71,22 @@ class CarService {
     }
   };
 
-  updateCar = (data, callBack) => {
+  updateCar = (req, callBack) => {
     try {
+      const data = req.body;
+      const carId = req.params.id;
       pool.query(
         `UPDATE cars_inventory set make = ?, model = ?, year = ?, mileage = ?, price = ? WHERE car_id = ?`,
-        [
-          data.make,
-          data.model,
-          data.year,
-          data.mileage,
-          data.price,
-          data.carId
-        ],
+        [data.make, data.model, data.year, data.mileage, data.price, carId],
         (error, results, fields) => {
           if (error) {
             return callBack(error);
           }
-          console.log('data updated', results[0]);
           return callBack(null, results[0]);
         }
       );
     } catch (error) {
-      console.log('error while deleting car');
+      console.log('error while updating car', error);
       return error;
     }
   };
