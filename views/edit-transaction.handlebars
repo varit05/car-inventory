@@ -13,13 +13,14 @@
                         <fieldset>
                             <div>
                                 <label for="paymentDate">Payment Date:
-                                    <input type="date" value="{{transaction.payment_date}}" name="payment_date" id="paymentDate">
+                                    <input type="date" required value="{{transaction.payment_date}}" name="payment_date"
+                                        id="paymentDate">
                                 </label>
                                 <label for="dateSold">Date sold:
-                                    <input type="date" value="{{transaction.date_sold}}" name="date_sold" id="dateSold">
+                                    <input type="date" required value="{{transaction.date_sold}}" name="date_sold" id="dateSold">
                                 </label>
                                 <label for="monthlyPayment">Monthly Payment:
-                                    <input type="number" value="{{transaction.monthly_payment}}" name="monthly_payment"
+                                    <input type="number" required value="{{transaction.monthly_payment}}" name="monthly_payment"
                                         id="monthlyPayment">
                                 </label>
                             </div>

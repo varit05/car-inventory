@@ -13,15 +13,16 @@
                         <fieldset>
                             <div>
                                 <label for="employee">Employee Name:
-                                    <input type="text" name="name" value="{{employee.name}}" id="employeeName" max="254">
+                                    <input type="text" name="name" required value="{{employee.name}}" id="employeeName"
+                                        max="254">
                                 </label>
                                 <label for="employee">Salary Name:
-                                    <input type="text" name="salary" value="{{employee.salary}}" id="employeeSalary"
+                                    <input type="text" name="salary" required value="{{employee.salary}}" id="employeeSalary"
                                         max="254">
                                 </label>
                                 <label for="employee">Number of Cars Sold:
-                                    <input type="text" name="num_cars_sold" value="{{employee.num_cars_sold}}" id="employeeSales"
-                                        max="254">
+                                    <input type="text" name="num_cars_sold" required value="{{employee.num_cars_sold}}"
+                                        id="employeeSales" max="254">
                                 </label>
                             </div>
                             <input type="submit" value="Edit Employee" id="editEmployee">

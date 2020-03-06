@@ -13,20 +13,20 @@
                         <fieldset>
                             <div>
                                 <label for="customer">Customer First Name:
-                                    <input type="text" name="first_name" value="{{customer.first_name}}" id="customerFirstName"
+                                    <input type="text" name="first_name" required value="{{customer.first_name}}" id="customerFirstName"
                                         max="254">
                                 </label>
                                 <label for="customer">Customer Last Name:
-                                    <input type="text" name="last_name" value="{{customer.last_name}}" id="customerLastName"
+                                    <input type="text" name="last_name" required value="{{customer.last_name}}" id="customerLastName"
                                         max="254">
                                 </label>
                                 <label for="customer">Customer Phone Number:
-                                    <input type="text" name="phone_number" value="{{customer.phone_number}}" id="customerPhoneNumber"
-                                        max="254">
+                                    <input type="text" name="phone_number" required value="{{customer.phone_number}}"
+                                        id="customerPhoneNumber" max="254">
                                 </label>
                                 <label for="customer">Customer Email Address:
-                                    <input type="text" name="email_address" value="{{customer.email_address}}" id="customerEmailAddress"
-                                        max="254">
+                                    <input type="text" name="email_address" required value="{{customer.email_address}}"
+                                        id="customerEmailAddress" max="254">
                                 </label>
                             </div>
                             <input type="submit" value="Edit Customer" id="editCustomer">
