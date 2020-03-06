@@ -9,10 +9,6 @@ const getEmployees = async (req, res, next, complete) => {
       }
       res.locals.employees = employees;
       complete();
-      // res.status(OK).json({
-      //   message: 'All Employees data retrieve successfully',
-      //   data: employees
-      // });
     });
   } catch (error) {
     next(error);
@@ -40,10 +36,6 @@ const addNewEmployee = async (req, res, next) => {
         return;
       }
       res.redirect('/employee');
-      // res.status(CREATED).json({
-      //   message: 'New employee has been added successfully',
-      //   data: employees
-      // });
     });
   } catch (error) {
     next(error);
@@ -58,10 +50,6 @@ const deleteEmployee = async (req, res, next) => {
         return;
       }
       res.redirect('/employee');
-      // res.status(OK).json({
-      //   message: 'Employee has been deleted successfully',
-      //   data: results
-      // });
     });
   } catch (error) {
     next(error);
@@ -76,10 +64,6 @@ const updateEmployee = async (req, res, next) => {
         return;
       }
       res.redirect('/employee');
-      // res.status(OK).json({
-      //   message: 'Employee has been updated successfully',
-      //   data: results
-      // });
     });
   } catch (error) {
     next(error);

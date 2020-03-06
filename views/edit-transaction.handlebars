@@ -1,0 +1,33 @@
+<!--Jumbotron/Header-->
+<section id="header" class="jumbotron text-center">
+    <h1 class="display-3"> Edit Transaction </h1>
+</section>
+
+<div class="container">
+    <div class="row text-center h-100">
+        <div class="col-md-3 text-center my-auto">
+            <div class="card card-block d-flex" style="width: 60rem;">
+                <div class="card-body">
+                    <h3 class="card-title">Edit Transaction</h3>
+                    <form class="centerForm" action="/transactions/{{transaction.transaction_id}}?_method=PUT" method="POST">
+                        <fieldset>
+                            <div>
+                                <label for="paymentDate">Payment Date:
+                                    <input type="date" value="{{transaction.payment_date}}" name="payment_date" id="paymentDate">
+                                </label>
+                                <label for="dateSold">Date sold:
+                                    <input type="date" value="{{transaction.date_sold}}" name="date_sold" id="dateSold">
+                                </label>
+                                <label for="monthlyPayment">Monthly Payment:
+                                    <input type="number" value="{{transaction.monthly_payment}}" name="monthly_payment"
+                                        id="monthlyPayment">
+                                </label>
+                            </div>
+                            <input type="submit" value="Edit Transaction" id="editTransaction">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

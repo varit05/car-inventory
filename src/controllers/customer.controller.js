@@ -1,5 +1,4 @@
 const CustomerService = require('../services/customers.service');
-const { OK, CREATED } = require('http-status-codes');
 
 const getCustomers = async (req, res, next, complete) => {
   try {
@@ -24,10 +23,6 @@ const addNewCustomer = async (req, res, next) => {
         return;
       }
       res.redirect('/customer');
-      // res.status(CREATED).json({
-      //   message: 'New Customer has been added successfully',
-      //   data: customers
-      // });
     });
   } catch (error) {
     next(error);
@@ -40,14 +35,10 @@ const getCustomerById = (req, res, next, complete) => {
       if (err) {
         next(err);
         return;
+        return;
       }
-      console.log('customer', customer);
       res.locals.customer = customer;
       complete();
-      // res.status(OK).json({
-      //   message: 'Customer has been deleted successfully',
-      //   data: results
-      // });
     });
   } catch (error) {
     next(error);
@@ -62,10 +53,6 @@ const deleteCustomer = async (req, res, next) => {
         return;
       }
       res.redirect('/customer');
-      // res.status(OK).json({
-      //   message: 'Customer has been deleted successfully',
-      //   data: results
-      // });
     });
   } catch (error) {
     next(error);

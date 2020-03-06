@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   getCars,
   getCarbyId,
+  searchCars,
   addNewCar,
   deleteCar,
   updateCar

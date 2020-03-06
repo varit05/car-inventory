@@ -1,15 +1,28 @@
 const pool = require('../connection');
 class CarService {
-  getAllCars = callBack => {
+  getAllCars = (req, callBack) => {
     try {
-      pool.query(`SELECT * FROM cars_inventory;`, (error, results, fields) => {
+      const data = req.query;
+      console.log('query', data);
+      let searchQuery;
+      if (data.price || data.year) {
+        searchQuery = `SELECT * FROM cars_inventory WHERE price IS NULL OR price < ${data.price} 
+      AND year IS NULL or year >= ${data.year}
+      AND make IS NULL or make = '${data.make}'`;
+      } else {
+        searchQuery = `SELECT * FROM cars_inventory;`;
+      }
+
+      pool.query(searchQuery, (error, results, fields) => {
         if (error) {
           return callBack(error);
         }
+        console.log(results);
         return callBack(null, results);
       });
     } catch (error) {
       console.log('error retrieving cars');
+      return error;
     }
   };
 
@@ -29,6 +42,29 @@ class CarService {
       );
     } catch (error) {
       console.log('error retrieving car by Id');
+      return error;
+    }
+  };
+
+  /**
+   * Get car by Price, Model, Make
+   */
+  searchCar = (data, callBack) => {
+    try {
+      pool.query(
+        `SELECT * FROM cars_inventory WHERE (${data.price} IS NULL OR price < ${data.price}) 
+          AND (${data.year} IS NULL OR year > ${data.year} AND 
+          AND (${data.mileage} IS NULL OR mileage < ${data.mileage})`,
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+          return callBack(null, results[0]);
+        }
+      );
+    } catch (error) {
+      console.log('error retrieving car by search');
+      return error;
     }
   };
 
@@ -53,7 +89,6 @@ class CarService {
   /**
    * Delete car
    */
-
   deleteCar = (data, callBack) => {
     try {
       pool.query(

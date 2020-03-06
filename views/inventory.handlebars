@@ -9,36 +9,36 @@
             <div class="card card-block d-flex" style="width: 60rem;">
                 <div class="card-body">
                     <!-- Search Form -->
-                    <form action="/" method="post">
+                    <form action="/inventory" method="get">
                         <fieldset>
                             <legend>
                                 <h3>Search Car in RWB Database</h3>
                             </legend>
                             <p>
                                 <label for="price-range">Desired price range: </label>
-                                <select name="price-range" id="price-range">
-                                    <option value="10grand"> $10,000 </option>
-                                    <option value="20grand"> $20,000 </option>
-                                    <option value="40grand"> $40,000 </option>
-                                    <option value="50grand"> $50,000 </option>
+                                <select name="price" id="price-range">
+                                    <option value="10000"> $10,000 </option>
+                                    <option value="20000"> $20,000 </option>
+                                    <option value="40000"> $40,000 </option>
+                                    <option value="5000"> $50,000 </option>
                                 </select>
 
-                                <label for="car-color">Desired car color: </label>
-                                <select name="car-color" id="car-color">
-                                    <option value="black"> black </option>
-                                    <option value="red"> red </option>
-                                    <option value="white"> white </option>
-                                    <option value="blue">blue</option>
+                                <label for="car-year">Desired car year: </label>
+                                <select name="year" id="car-year">
+                                    <option value="2005"> 2005 </option>
+                                    <option value="2010"> 2010 </option>
+                                    <option value="2015"> 2015 </option>
+                                    <option value="2020"> 2020 </option>
                                 </select>
 
-                                <label for="car-type">Desired car type: </label>
-                                <select name="car-type" id="car-type">
-                                    <option value="sports"> sports </option>
-                                    <option value="suv"> suv </option>
-                                    <option value="sedan"> sedan </option>
+                                <label for="car-make">Desired car make: </label>
+                                <select name="make" id="car-make">
+                                    <option value="Toyota"> Toyota </option>
+                                    <option value="Nisaan"> Nisaan </option>
+                                    <option value="Mazda"> Mazda </option>
                                 </select>
                             </p>
-                            <input type="submit" name="search_submit" id="search_submit">
+                            <button type="submit"> Submit </button>
                         </fieldset>
                     </form>
                 </div>
@@ -55,25 +55,21 @@
                     <h3 class="card-title">Search Results(Sample)</h3>
                     <table class="table table-striped" border="1" width="400" height="80" align="left">
                         <tr>
-                            {{!-- <td>Name </td> --}}
-                            <td>Price </td>
-                            {{!-- <td>Color </td> --}}
-                            {{!-- <td>Type </td> --}}
-                            <td>Make</td>
-                            <td>Model</td>
-                            <td>Year</td>
-                            <td>Mileage</td>
+                            <td> Price </td>
+                            <td> Make </td>
+                            <td> Model </td>
+                            <td> Year </td>
+                            <td> Mileage </td>
                             <td></td>
                             <td></td>
                         </tr>
                         {{#each cars}}
                         <tr>
-                            {{!-- <td>Porsche 911 GT3</td> --}}
-                            <td>{{price}}</td>
-                            <td>{{make}}</td>
-                            <td>{{model}}</td>
-                            <td>{{year}}</td>
-                            <td>{{mileage}}</td>
+                            <td> {{price}} </td>
+                            <td> {{make}} </td>
+                            <td> {{model}} </td>
+                            <td> {{year}} </td>
+                            <td> {{mileage}} </td>
                             <td>
                                 <button type="button">
                                     <a href="/inventory/edit/{{car_id}}">EDIT</a>
@@ -98,7 +94,7 @@
             <div class="card card-block d-flex" style="width: 60rem;">
                 <div class="card-body">
                     <h3 class="card-title">Add New Car</h3>
-                    <form class="centerForm" acion="/inventory" method="POST">
+                    <form class="centerForm" action="/inventory" method="POST">
                         <fieldset>
                             <div>
                                 <label for="car">Car Price:

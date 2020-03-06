@@ -13,6 +13,7 @@ class CustomerService {
       });
     } catch (error) {
       console.log('error retrieving customers');
+      return error;
     }
   };
 
@@ -32,6 +33,7 @@ class CustomerService {
       );
     } catch (error) {
       console.log('error retrieving customer by ID');
+      return error;
     }
   };
 

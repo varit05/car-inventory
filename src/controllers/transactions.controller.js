@@ -1,5 +1,4 @@
 const TransactionService = require('../services/transactions.service');
-const { OK, CREATED } = require('http-status-codes');
 
 const getAllTransactions = async (req, res, next, complete) => {
   try {
@@ -8,13 +7,29 @@ const getAllTransactions = async (req, res, next, complete) => {
         next(err);
         return;
       }
+      console.log('transactions', transactions);
       res.locals.transactions = transactions;
       complete();
-      // res.status(OK).json({
-      //   message: 'All transactions data retrieve successfully',
-      //   data: transactions
-      // });
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getTransactionById = async (req, res, next, complete) => {
+  try {
+    TransactionService.getTransactionById(
+      req.params.id,
+      (err, transactions) => {
+        if (err) {
+          res.write(JSON.stringify(err));
+          res.end();
+        }
+        console.log('transaction', transactions);
+        res.locals.transaction = transactions;
+        complete();
+      }
+    );
   } catch (error) {
     next(error);
   }
@@ -27,10 +42,8 @@ const addNewTransaction = async (req, res, next) => {
         next(err);
         return;
       }
-      res.status(CREATED).json({
-        message: 'New Transaction has been added successfully',
-        data: transactions
-      });
+      console.log('transaction', transactions);
+      res.redirect('/transactions');
     });
   } catch (error) {
     next(error);
@@ -39,15 +52,12 @@ const addNewTransaction = async (req, res, next) => {
 
 const deleteTransaction = async (req, res, next) => {
   try {
-    TransactionService.deleteTransaction(req.body.txnId, (err, results) => {
+    TransactionService.deleteTransaction(req.params.id, (err, results) => {
       if (err) {
         next(err);
         return;
       }
-      res.status(OK).json({
-        message: 'Transaction has been deleted successfully',
-        data: results
-      });
+      res.redirect('/transactions');
     });
   } catch (error) {
     next(error);
@@ -56,15 +66,12 @@ const deleteTransaction = async (req, res, next) => {
 
 const updateTransaction = async (req, res, next) => {
   try {
-    TransactionService.updateTransaction(req.body, (err, results) => {
+    TransactionService.updateTransaction(req, (err, results) => {
       if (err) {
         next(err);
         return;
       }
-      res.status(OK).json({
-        message: 'Transaction has been updated successfully',
-        data: results
-      });
+      res.redirect('/transactions');
     });
   } catch (error) {
     next(error);
@@ -73,6 +80,7 @@ const updateTransaction = async (req, res, next) => {
 
 module.exports = {
   getAllTransactions,
+  getTransactionById,
   addNewTransaction,
   deleteTransaction,
   updateTransaction

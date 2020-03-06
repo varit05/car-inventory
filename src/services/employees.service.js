@@ -13,6 +13,7 @@ class EmployeeService {
       });
     } catch (error) {
       console.log('error retrieving cars');
+      return error;
     }
   };
 
@@ -33,6 +34,7 @@ class EmployeeService {
       );
     } catch (error) {
       console.log('error retrieving cars');
+      return error;
     }
   };
 
