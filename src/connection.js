@@ -1,12 +1,14 @@
 const { createConnection } = require('mysql');
 
-const connection = createConnection({
+const db_config = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB,
   multipleStatements: true
-});
+};
+
+let connection = createConnection(db_config);
 
 //- Establish a new connection
 connection.connect(function(err) {
