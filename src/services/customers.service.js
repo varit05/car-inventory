@@ -1,4 +1,4 @@
-const pool = require('../connection');
+const pool = require("../connection");
 class CustomerService {
   /**
    * Get all customer details
@@ -12,7 +12,7 @@ class CustomerService {
         return callBack(null, results);
       });
     } catch (error) {
-      console.log('error retrieving customers');
+      console.log("error retrieving customers");
       return error;
     }
   };
@@ -32,7 +32,7 @@ class CustomerService {
         }
       );
     } catch (error) {
-      console.log('error retrieving customer by ID');
+      console.log("error retrieving customer by ID");
       return error;
     }
   };
@@ -59,7 +59,7 @@ class CustomerService {
         }
       );
     } catch (error) {
-      console.log('error while adding customer');
+      console.log("error while adding customer");
       return error;
     }
   };
@@ -70,17 +70,19 @@ class CustomerService {
   deleteCustomer = (data, callBack) => {
     try {
       pool.query(
-        `DELETE FROM customer WHERE customer_id = ${data}`,
+        `SET FOREIGN_KEY_CHECKS = 0;
+        DELETE FROM customer WHERE customer_id = ${data};
+        SET FOREIGN_KEY_CHECKS = 1;`,
         (error, results, fields) => {
           if (error) {
             return callBack(error);
           }
-          console.log('customer deleted', results);
+          console.log("customer deleted", results);
           return callBack(null, results);
         }
       );
     } catch (error) {
-      console.log('error while deleting customer');
+      console.log("error while deleting customer");
       return error;
     }
   };
@@ -93,7 +95,9 @@ class CustomerService {
       const data = req.body;
       const custId = req.params.id;
       pool.query(
-        `UPDATE customer set first_name = ?, last_name = ?, email_address = ?, phone_number = ? WHERE customer_id = ?`,
+        `SET FOREIGN_KEY_CHECKS = 0;
+        UPDATE customer set first_name = ?, last_name = ?, email_address = ?, phone_number = ? WHERE customer_id = ?;
+        SET FOREIGN_KEY_CHECKS = 1;`,
         [
           data.first_name,
           data.last_name,
@@ -105,12 +109,12 @@ class CustomerService {
           if (error) {
             return callBack(error);
           }
-          console.log('customer updated', results[0]);
+          console.log("customer updated", results[0]);
           return callBack(null, results[0]);
         }
       );
     } catch (error) {
-      console.log('error while deleting customer');
+      console.log("error while deleting customer");
       return error;
     }
   };

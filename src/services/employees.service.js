@@ -1,4 +1,4 @@
-const pool = require('../connection');
+const pool = require("../connection");
 class EmployeeService {
   /**
    * Get all Employee details
@@ -12,7 +12,7 @@ class EmployeeService {
         return callBack(null, results);
       });
     } catch (error) {
-      console.log('error retrieving cars');
+      console.log("error retrieving cars");
       return error;
     }
   };
@@ -22,7 +22,7 @@ class EmployeeService {
    */
   getEmployeeById = (id, callBack) => {
     try {
-      console.log('id', id);
+      console.log("id", id);
       pool.query(
         `SELECT * FROM employee WHERE employee_id = ${id};`,
         (error, results, fields) => {
@@ -33,7 +33,7 @@ class EmployeeService {
         }
       );
     } catch (error) {
-      console.log('error retrieving cars');
+      console.log("error retrieving cars");
       return error;
     }
   };
@@ -55,7 +55,7 @@ class EmployeeService {
         }
       );
     } catch (error) {
-      console.log('error while adding car');
+      console.log("error while adding car");
       return error;
     }
   };
@@ -66,17 +66,19 @@ class EmployeeService {
   deleteEmployee = (data, callBack) => {
     try {
       pool.query(
-        `DELETE FROM employee WHERE employee_id = ${data}`,
+        `SET FOREIGN_KEY_CHECKS = 0;
+        DELETE FROM employee WHERE employee_id = ${data};
+        SET FOREIGN_KEY_CHECKS = 1`,
         (error, results, fields) => {
           if (error) {
             return callBack(error);
           }
-          console.log('employee deleted', results);
+          console.log("employee deleted", results);
           return callBack(null, results);
         }
       );
     } catch (error) {
-      console.log('error while deleting car');
+      console.log("error while deleting car");
       return error;
     }
   };
@@ -89,18 +91,20 @@ class EmployeeService {
       const data = req.body;
       const empId = req.params.id;
       pool.query(
-        `UPDATE employee set name = ?, num_cars_sold = ?, salary = ? WHERE employee_id = ?`,
+        `SET FOREIGN_KEY_CHECKS = 0;
+        UPDATE employee set name = ?, num_cars_sold = ?, salary = ? WHERE employee_id = ?;
+        SET FOREIGN_KEY_CHECKS = 1;`,
         [data.name, data.num_cars_sold, data.salary, empId],
         (error, results, fields) => {
           if (error) {
             return callBack(error);
           }
-          console.log('employee updated', results[0]);
+          console.log("employee updated", results[0]);
           return callBack(null, results[0]);
         }
       );
     } catch (error) {
-      console.log('error while deleting car');
+      console.log("error while deleting car");
       return error;
     }
   };
