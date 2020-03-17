@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const {
   getAllTransactions,
@@ -6,17 +6,17 @@ const {
   addNewTransaction,
   updateTransaction,
   deleteTransaction
-} = require('../controllers/transactions.controller');
+} = require("../controllers/transactions.controller");
 
-const CarService = require('../services/cars.service');
-const CustomerService = require('../services/customers.service');
-const EmployeeService = require('../services/employees.service');
+const CarService = require("../services/cars.service");
+const CustomerService = require("../services/customers.service");
+const EmployeeService = require("../services/employees.service");
 
-router.post('/', addNewTransaction);
-router.put('/:id', updateTransaction);
-router.delete('/:id', deleteTransaction);
+router.post("/", addNewTransaction);
+router.put("/:id", updateTransaction);
+router.delete("/:id", deleteTransaction);
 
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
   let employeesData = [];
   let customerData = [];
   let carData = [];
@@ -48,14 +48,28 @@ router.get('/', (req, res, next) => {
   }
 
   function complete() {
-    const employeeNames = employeesData.map(employee => employee.name);
-    const customerNames = customerData.map(customer => {
-      return { firstName: customer.first_name, lastName: customer.last_name };
+    const employeeNames = employeesData.map(employee => {
+      return {
+        name: employee.name,
+        employeeId: employee.employee_id
+      };
     });
-    const carsModel = carData.map(car => car.model);
+    const customerNames = customerData.map(customer => {
+      return {
+        customerId: customer.customer_id,
+        firstName: customer.first_name,
+        lastName: customer.last_name
+      };
+    });
+    const carsModel = carData.map(car => {
+      return {
+        carId: car.car_id,
+        model: car.model
+      };
+    });
 
-    res.render('transactions', {
-      title: 'Transactions',
+    res.render("transactions", {
+      title: "Transactions",
       transactions: res.locals.transactions,
       employeeNames,
       customerNames,
@@ -64,11 +78,11 @@ router.get('/', (req, res, next) => {
   }
 });
 
-router.get('/edit/:id', (req, res, next) => {
+router.get("/edit/:id", (req, res, next) => {
   getTransactionById(req, res, next, complete);
   function complete() {
-    res.render('edit-transaction', {
-      title: 'Edit transaction',
+    res.render("edit-transaction", {
+      title: "Edit transaction",
       transaction: res.locals.transaction
     });
   }

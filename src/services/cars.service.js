@@ -1,12 +1,12 @@
-const pool = require('../connection');
+const pool = require("../connection");
 class CarService {
   getAllCars = (req, callBack) => {
     try {
       const data = req.query;
-      console.log('query', data);
+      console.log("query", data);
       let searchQuery;
       if (data.price || data.year) {
-        searchQuery = `SELECT * FROM cars_inventory WHERE price <= '${data.price}' AND year >= ${data.year}`;
+        searchQuery = `SELECT * FROM cars_inventory WHERE price <= ${data.price} AND year >= ${data.year}`;
       } else {
         searchQuery = `SELECT * FROM cars_inventory;`;
       }
@@ -19,7 +19,7 @@ class CarService {
         return callBack(null, results);
       });
     } catch (error) {
-      console.log('error retrieving cars');
+      console.log("error retrieving cars");
       return error;
     }
   };
@@ -39,7 +39,7 @@ class CarService {
         }
       );
     } catch (error) {
-      console.log('error retrieving car by Id');
+      console.log("error retrieving car by Id");
       return error;
     }
   };
@@ -61,7 +61,7 @@ class CarService {
         }
       );
     } catch (error) {
-      console.log('error retrieving car by search');
+      console.log("error retrieving car by search");
       return error;
     }
   };
@@ -80,7 +80,7 @@ class CarService {
         }
       );
     } catch (error) {
-      console.log('error while adding car');
+      console.log("error while adding car");
       return error;
     }
   };
@@ -99,7 +99,7 @@ class CarService {
         }
       );
     } catch (error) {
-      console.log('error while deleting car');
+      console.log("error while deleting car");
       return error;
     }
   };
@@ -119,7 +119,7 @@ class CarService {
         }
       );
     } catch (error) {
-      console.log('error while updating car', error);
+      console.log("error while updating car", error);
       return error;
     }
   };

@@ -16,14 +16,14 @@
                                 <label for="customer">Customer:
                                     <select name="customerPick" id="customerPick">
                                         {{#each customerNames}}
-                                        <option value="{{firstName}}"> {{firstName }} {{lastName}}</option>
+                                        <option value="{{customerId}}"> {{firstName }} {{lastName}}</option>
                                         {{/each}}
                                     </select>
                                 </label>
                                 <label for="employee">Employee:
                                     <select name="employeePick" id="employeePick">
                                         {{#each employeeNames}}
-                                        <option value="{{this}}"> {{this}} </option>
+                                        <option value="{{employeeId}}"> {{name}} </option>
                                         {{/each}}
                                     </select>
                                 </label>
@@ -31,14 +31,14 @@
                                     <select name="addemployeePick" id="employeePick">
                                         <option value="none">None </option>
                                         {{#each employeeNames}}
-                                        <option value="{{this}}"> {{this}} </option>
+                                        <option value="{{employeeId}}"> {{name}} </option>
                                         {{/each}}
                                     </select>
                                 </label>
                                 <label for="car">Car:
                                     <select name="carPick" id="carPick">
                                         {{#each carsModel}}
-                                        <option value="{{this}}"> {{this}} </option>
+                                        <option value="{{carId}}"> {{model}} </option>
                                         {{/each}}
                                     </select>
                                 </label>
